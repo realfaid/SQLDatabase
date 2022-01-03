@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AddRecept">
 
 
     <TextView
-        android:id="@+id/textCategoryName"
+        android:id="@+id/textReceptName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Napište název jídla"
@@ -23,25 +23,26 @@
 
     <EditText
         android:id="@+id/editReceptName"
-        android:layout_width="346dp"
-        android:layout_height="43dp"
+        android:layout_width="306dp"
+        android:layout_height="41dp"
         android:gravity="center"
         android:hint=""
         android:text=""
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCategoryName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.107" />
 
     <EditText
         android:id="@+id/editReceptResources"
-        android:layout_width="345dp"
-        android:layout_height="121dp"
+        android:layout_width="311dp"
+        android:layout_height="103dp"
+        android:background="@drawable/border"
         android:gravity="top"
         android:hint=""
-        android:background="@drawable/border"
         android:text=""
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,8 +53,8 @@
 
     <EditText
         android:id="@+id/editReceptProcess"
-        android:layout_width="370dp"
-        android:layout_height="254dp"
+        android:layout_width="315dp"
+        android:layout_height="194dp"
         android:background="@drawable/border"
         android:gravity="top"
         android:hint=""
@@ -66,10 +67,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnConfirmAddCategory"
+        android:id="@+id/btnConfirmAddRecept"
         android:layout_width="143dp"
         android:layout_height="57dp"
         android:text="Přidat"
+        android:onClick="ConfirmRecept"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +85,7 @@
         android:text="Vypište potřebné suroviny"
         android:textColor="@color/black"
         android:textSize="18dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

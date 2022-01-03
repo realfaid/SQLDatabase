@@ -1,4 +1,4 @@
-package com.example.sqldatabase;
+package com.example.sqlprojekt;
 
 import org.junit.Test;
 
