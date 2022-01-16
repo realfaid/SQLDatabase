@@ -7,17 +7,6 @@ android:layout_height="match_parent"
 tools:context=".MainActivity">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerCategories"
-        android:layout_width="397dp"
-        android:layout_height="531dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.275" />
-
     <TextView
         android:id="@+id/textCategories"
         android:layout_width="wrap_content"
@@ -25,12 +14,10 @@ tools:context=".MainActivity">
         android:text="Recepty"
         android:textColor="@color/black"
         android:textSize="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerCategories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAddRecept"
@@ -41,7 +28,15 @@ tools:context=".MainActivity">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/myListView"
+        android:layout_width="379dp"
+        android:layout_height="581dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddRecept"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerCategories"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintTop_toBottomOf="@+id/textCategories"
+        app:layout_constraintVertical_bias="0.414" />
 </androidx.constraintlayout.widget.ConstraintLayout>

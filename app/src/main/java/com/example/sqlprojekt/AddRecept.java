@@ -48,6 +48,7 @@ public class AddRecept extends AppCompatActivity {
             public void onClick(View v) {
 
                 insertData();
+
             }
 
 
@@ -61,7 +62,7 @@ public class AddRecept extends AppCompatActivity {
         String suroviny = txtresources.getText().toString().trim();
         String postup = txtprocess.getText().toString().trim();
         ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading....");
+        progressDialog.setMessage("Načítání....");
 
         if (nazev.isEmpty()) {
             Toast.makeText(this, "Zadej název", Toast.LENGTH_SHORT).show();
@@ -121,24 +122,5 @@ public class AddRecept extends AppCompatActivity {
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
 
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.home:
-                //Intent ht1 = new Intent(MainActivity.this, MainActivity.class);
-                //startActivity(ht1);
-                setContentView(R.layout.activity_main);
-                return true;
-
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }

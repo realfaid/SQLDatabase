@@ -20,7 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddRecept"/>
+        <activity android:name=".AddRecept"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ReceptActivity"
+            android:parentActivityName=".MainActivity"/>
+        />
+
     </application>
 
 </manifest>
