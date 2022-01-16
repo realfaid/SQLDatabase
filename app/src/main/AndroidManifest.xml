@@ -24,7 +24,11 @@
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".ReceptActivity"
             android:parentActivityName=".MainActivity"/>
-        />
+
+
+        <activity android:name=".EditReceptnepouzivam"
+         />
+
 
     </application>
 

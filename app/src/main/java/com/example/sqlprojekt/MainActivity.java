@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent ht1 = new Intent( view.getContext(), ReceptActivity.class);
                 ht1.putExtra("position", position );
-
                 view.getContext().startActivity(ht1);
             }
         });
