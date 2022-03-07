@@ -147,7 +147,7 @@ V našem případě na prvním místě název, který jsme použili i v souboru 
 ==Výpis dat do Listview==
 * Jako první sa na naší první stránku musíme přidat ListView, takže v xml souboru, který používáme na hlavní stránce, přidáme ListView, ukotvíme a nastavíme id.
 
-* Nyní si vytvoříme novou trídu s názvem Recept, bude to náš model, pro práci s databází. V něm si vytvoříme proměnné String, konstruktor a metody pro získávání dat. Bude to vypadat takhle:\
+* Nyní si vytvoříme novou trídu s názvem Recept, bude to náš model, pro práci s databází. V něm si vytvoříme proměnné String, konstruktor a metody pro získávání a nastavování hodnot(gettery a settery). Bude to vypadat takhle:\
 `public class Recept {`\
    ` private String id,nazev,suroviny,postup;`\
  `   public Recept() {`\
@@ -183,12 +183,12 @@ V našem případě na prvním místě název, který jsme použili i v souboru 
   `      this.postup = postup;`\
   `  }`\
 `}`
-* Bude to fungovat tak, že při vytvoření instanci třídy, budeme psát jako parametry, hodnoty které získáme z databáze a ty so uloží do proměnných třídy Recept, poté už jen budeme používat metody pro získávání dat, případně nastavení nové hodnoty.
+* Bude to fungovat tak, že při vytvoření instanci třídy, budeme psát jako parametry, hodnoty které získáme z databáze a ty se uloží do proměnných třídy Recept, poté už jen budeme používat metody pro získávání dat, případně nastavení nové hodnoty.
 * Nyní si vytvoříme xml soubor, který se bude zobrazovat v ListView. Při vytváření si pojmenujeme soubor jako "recept_item" a Root element nastavíme LinearLayout. Když máme soubor vytvořený, v kódu přepíšeme "android:orientation" layoutu na "horizontal" a "android:layout_height" na "wrap_content", nyní si do layoutu přidáme TextView a nastavíme id("vypisReceptNazev")
 * Jako další budeme potřebovat adapter, takže vytvoříme novou třídu a pojmenujeme ji ReceptAdapter, ta bude sloužit pro zobrazení položek v ListView. Třída bude dědit ArrayAdapter s modelem Recept : `public class ReceptAdapter extends ArrayAdapter<Recept>`
-* Vytvoříme instanci Context a pojmenujeme context a instanci List<Recept> a pojmenujeme arrayListRecept:` Context context;`\
+* Vytvoříme objekt Context a pojmenujeme context a objekt List třídy Recept a pojmenujeme arrayListRecept:` Context context;`\
 `    List<Recept> arrayListRecept;`
-* Jako další vytvoříme konstruktor s parametrama Context context a List<Recept> arrayListRecept, taky nastavíme aby to neprošlo pokud hodnota context bude nulová(null) a to pomocí @NonNull před conext, konstruktor nastaví pro arrayList položku pro zobrazování pomocí super, také uloží zadané hodnoty při volání třídy do instancí context a list ve třídě.\
+* Jako další vytvoříme konstruktor s parametrama Context context a List<Recept> arrayListRecept, taky nastavíme aby to neprošlo pokud hodnota context bude nulová(null) a to pomocí @NonNull před conext, konstruktor nastaví pro arrayList položku pro zobrazování pomocí super, také uloží zadané hodnoty při volání třídy do objektů context a arraylist ve třídě.\
  ` public ReceptAdapter(@NonNull Context context, List<Recept> arrayListRecept) {`\
  `       super(context, R.layout.recept_item,arrayListRecept);` - recept_item - název xml souboru pro položku v listview\
  `       this.context = context;`\
@@ -201,5 +201,84 @@ V našem případě na prvním místě název, který jsme použili i v souboru 
     `    vypisNazev.setText(arrayListRecept.get(position).getNazev());`\
      `   return view;`\
   `  }`
-
+* Přejdeme to třídy MainActivity. Vytvoříme si nový obejkt listView, uložíme do něj náš listview podle id, dále objekt adapter, do kterého uložíme uložíme instanci našeho adaptéru. Vytvoříme si ArrayList pro třídu Recept.
+Do třídy:
+   ` ListView hlavniListView;`\
+   ` ReceptAdapter adapter;`\
+   ` public static ArrayList<Recept> receptArrayList = new ArrayList<>();`\
+Do metody onCreate:
+   ` hlavniListView = findViewById(R.id.myListView);`\
+   ` adapter = new ReceptAdapter(this, receptArrayList);`\
+   ` hlavniListView.setAdapter(adapter);`
+* Přesuneme se na stránky hostingu, do správce souborů, manage website->tools->file manager->upload, a ve složce public_html vytvoříme soubor retrieve.php, který nám bude sloužit pro získávání dat z databáze. Vložíme do něho následující kód:
+    `<?php`\
+   ` $db_name = "id18087905_mojedatabaze";`  - zase vyplníme údaje o databázi\
+    `$mysql_username = "id18087905_realfaid";`\
+    `$mysql_pasword = "_Maturitni123";`\
+   ` $server_name = "localhost";`\
+   ` $connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name);` - připojíme se\
+   ` $result = array();`\
+   ` $result["recepty"] = array();` - v závorce název databáze\
+   ` $select = "SELECT * from recepty";` - sql dotaz \
+   ` $responce = mysqli_query($connection,$select);`\
+  `  while($row = mysqli_fetch_array($responce))`\
+   ` {`\
+    `    $index["id"]        = $row["0"];` - uloží data\
+    `    $index["nazev"]     = $row["1"];`\
+    `    $index["suroviny"]  = $row["2"];`\
+    `    $index["postup"]    = $row["3"];`\
+     `   array_push($result["recepty"], $index);\ - pushne data\
+  `  }`\
+      `   $result["success"]="1"; `\
+       `  echo json_encode($result); `\
+      `   mysqli_close($connection); `
+* Rozklikneme si retrieve.php na view, a zkopírujeme, následně si url uložíme do proměnné url ve třídě MainActivity.
+`String url = "https://sqlprojekt.000webhostapp.com/retrieve.php";`
+* Vytvoříme metodu nacistData a budeme ji volat v onCreate. Metoda bude sloužit pro načtení dat z databáze, hned na první obrazovce, při spuštění aplikace
+`...`\
+`nacistData();`\
+   ` }`\
+\
+   ` public void nacistData(){`\
+`}`
+* V metodě si vytvoříme instanci StringRequest s názvem request, v parametrech bude metoda POST a url použijeme naši proměnnou. Další bude new Response.Listener, který když začneme psát a odtabujete, vytvoří se vám struktura sama. Bude to vypadat následovně:
+ public void nactiData(){
+      `  StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {`\
+      `      @Override`\
+      `      public void onResponse(String response) {`\
+     `       }`\
+    `    })`\
+  `  }`
+* Na začátek vyčístíme arraylist `receptArrayList.clear();`, potom vytvoříme příkazy try a catch, do kterých budeme psát. Pro získávání dat ze serveru budeme používat JSON pro ukládání dat. Vytvoříme JSONObject, proměnnou String, a JSONArray, uložíme do nich následující hodnoty:
+` try{`\
+` JSONObject jsonObject = new JSONObject(response);`\
+` String sucess = jsonObject.getString("success");` - získá hodnotu "success"\
+`  JSONArray jsonArray = jsonObject.getJSONArray("recepty");` - získa si pole "recepty"
+* Následně vytvoříme podmínku a do podmínka bude pokud se "success" rovná "1", do podmínky dáme cyklus for, který se bude opakovat podle délky pole "jsonArray"(pole "recepty"), následně nový objekt JSONObject object, který vždy získá objekt podle hodnoty "i" z cyklu(půjde to postupně a vybere všechny objekty z databáze)
+` if(sucess.equals("1")){`\
+ ` for(int i=0; i<jsonArray.length();i++){`\
+` JSONObject object = jsonArray.getJSONObject(i);`
+* Vytvoříme proměnné string id, nazev, suroviny, postup a uložíme do nich hodnoty, které získáme z objektu(položka z databáze). Vytvoříme instanci třídy Recept a hodnoty parametrů budou ty Stringy, které jsme si vytvořili. Následně do našeho ArrayListu receptArrayList přidáme vytvořený objekt třídy Recept. Potom připomeneme adapteru, že se data změnila. Uzavřeme podmínku i try.
+` String id = object.getString("id");`\
+ `  String nazev = object.getString("nazev");`\
+`  String suroviny = object.getString("suroviny");`\
+`  String postup = object.getString("postup");`\
+`   Recept recept = new Recept(id,nazev,suroviny,postup);`\
+`   receptArrayList.add(recept);`\
+ `   adapter.notifyDataSetChanged();`\
+ `  }}}`
+* Příkaz catch nám bude "chytat" JSONException, což označuje chybi v JSON, pojmenujeme e, a dovnitř napíšeme ať nám to vypíše tu chybu do, která by nastala, do konzole. Uzavřeme již celý Response.Listener. Na konec ještě vytvoříme Response.ErrorListener s metodou onErrorResponse, která nám vypíše chybu do zprávy Toast. Nevypisuje chybu JSON API, ale chybu requestu.
+` catch(JSONException e){`\
+`     e.printStackTrace();`\
+`  }}}, `\
+`new Response.ErrorListener() {`\
+      `     @Override`\
+         `   public void onErrorResponse(VolleyError error) {`\
+        `        Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();`\
+          `  }`\
+     `   });`
+* V poslední části metody nacistData si vytvoříme RequestQueue, frontu na odesílání požadavků a přidáme do ní náš požadavek "request".\
+`RequestQueue requestQueue = Volley.newRequestQueue(this);`\
+   `     requestQueue.add(request);`\
+  `  }`
 
