@@ -186,6 +186,18 @@ V našem případě na prvním místě název, který jsme použili i v souboru 
 `}`
 * Bude to fungovat tak, že při vytvoření instanci třídy, budeme psát jako parametry, hodnoty které získáme z databáze a ty se uloží do proměnných třídy Recept, poté už jen budeme používat metody pro získávání dat, případně nastavení nové hodnoty.
 * Nyní si vytvoříme xml soubor, který se bude zobrazovat v ListView. Při vytváření si pojmenujeme soubor jako "recept_item" a Root element nastavíme LinearLayout. Když máme soubor vytvořený, v kódu přepíšeme "android:orientation" layoutu na "horizontal" a "android:layout_height" na "wrap_content", nyní si do layoutu přidáme TextView a nastavíme id("vypisReceptNazev")
+`android:orientation="horizontal"`
+ `   android:layout_width="match_parent"`
+  `  android:layout_height="wrap_content"`
+  `  android:padding="8dp">`
+
+  `  <TextView`
+    `    android:id="@+id/vypisReceptNazev"`
+    `    android:layout_width="342dp"`
+     `   android:layout_height="69dp"`
+      `  android:gravity="center_vertical|center"`
+       ` android:text="nazev"`
+     `   android:textSize="20dp" />`
 * Jako další budeme potřebovat adapter, takže vytvoříme novou třídu a pojmenujeme ji ReceptAdapter, ta bude sloužit pro zobrazení položek v ListView. Třída bude dědit ArrayAdapter s modelem Recept : `public class ReceptAdapter extends ArrayAdapter<Recept>`
 * Vytvoříme objekt Context a pojmenujeme context a objekt List třídy Recept a pojmenujeme arrayListRecept:` Context context;`\
 `    List<Recept> arrayListRecept;`
