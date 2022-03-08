@@ -144,6 +144,7 @@ V našem případě na prvním místě název, který jsme použili i v souboru 
    `         RequestQueue requestQueue = Volley.newRequestQueue(AddRecept.this);`\
    `         requestQueue.add(request);`\
   `  }`
+
 ==Výpis dat do Listview==
 * Jako první sa na naší první stránku musíme přidat ListView, takže v xml souboru, který používáme na hlavní stránce, přidáme ListView, ukotvíme a nastavíme id.
 
@@ -206,7 +207,7 @@ Do třídy:
    ` ListView hlavniListView;`\
    ` ReceptAdapter adapter;`\
    ` public static ArrayList<Recept> receptArrayList = new ArrayList<>();`\
-Do metody onCreate:
+Do metody onCreate:\
    ` hlavniListView = findViewById(R.id.myListView);`\
    ` adapter = new ReceptAdapter(this, receptArrayList);`\
    ` hlavniListView.setAdapter(adapter);`
@@ -259,7 +260,7 @@ Do metody onCreate:
  ` for(int i=0; i<jsonArray.length();i++){`\
 ` JSONObject object = jsonArray.getJSONObject(i);`
 * Vytvoříme proměnné string id, nazev, suroviny, postup a uložíme do nich hodnoty, které získáme z objektu(položka z databáze). Vytvoříme instanci třídy Recept a hodnoty parametrů budou ty Stringy, které jsme si vytvořili. Následně do našeho ArrayListu receptArrayList přidáme vytvořený objekt třídy Recept. Potom připomeneme adapteru, že se data změnila. Uzavřeme podmínku i try.
-` String id = object.getString("id");`\
+` String id = object.getString("id");` - v závorkách jsou názvy, které jsme psali v "retrieve.php"\
  `  String nazev = object.getString("nazev");`\
 `  String suroviny = object.getString("suroviny");`\
 `  String postup = object.getString("postup");`\
@@ -281,4 +282,67 @@ Do metody onCreate:
 `RequestQueue requestQueue = Volley.newRequestQueue(this);`\
    `     requestQueue.add(request);`\
   `  }`
+
+==Rozkliknutí položky v ListView==
+* Ve třídě MainActivity, v metodě onCreate, si vytvoříme OnItemClickListener na náš ListView. Do něho vložíme Intent, pro přepnutí do jiné třídy, do Extra přidáme hodnotou pozice("position") položky na kterou jsme kliknuli a následně provedeme.
+ `hlavniListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {`\
+           ` @Override`\
+           ` public void onItemClick(AdapterView<?> parent, View view, int position, long id) {`\
+              `  Intent ht1 = new Intent( view.getContext(), ReceptActivity.class);`\
+              `  ht1.putExtra("position", position );`\
+              `  view.getContext().startActivity(ht1);`\
+          `  }`\
+    `    });`
+* Vytvoříme si novou třídu ReceptActivity, bude sloužit pro zobrazení dáné položky, na kterou jsme kliknuli. Bude dědit po třídě AppCompatActivity, vytvoříme si metodu onCreate a metody pro zobrazení a nastavení menu.
+ `package com.example.sqlprojekt;`\
+`public class ReceptActivity extends AppCompatActivity {`\
+    `@Override`\
+    `protected void onCreate(Bundle savedInstanceState){`\
+    `    super.onCreate(savedInstanceState);`\
+   ` }`\
+  `  public boolean onCreateOptionsMenu(Menu menu) {`\
+  `      MenuInflater inflater = getMenuInflater();`\
+  `      inflater.inflate(R.menu.main_menu, menu); //fasfadf adf`\
+  `      return true;`\
+ `   }`\
+  `  public boolean onOptionsItemSelected(@NonNull MenuItem item) {`\
+  `      switch (item.getItemId()) {`
+
+   `         case R.id.home:`\
+   `             Intent ht1 = new Intent(ReceptActivity.this, MainActivity.class);`\
+   `             startActivity(ht1);`\
+   `             return true;`
+
+    `        default:`\
+    `            return super.onOptionsItemSelected(item);`\
+   `     }}}`
+* Budeme potřebovat si vytvořit xml soubor obrazovky, která bude sloužit pro zobrazení detailu receptu po rozkliknutí. Budeme v něm potřebovat 3x TextView, pro název receptu, suroviny a postup, dále tlačítko které nás přesměruje na úpravu receptu. Můžeme také přidat nadpisy k jednotlivým informacím o receptu. Všemu nastavíme id, v mém případě to jsou: receptDetailNazev, receptDetailSuroviny, receptDetailPostup a upravitBtn. Textview pro suroviny a recept si můžete vložit do Scrollview.
+* Ve třídě ReceptActivity si v metodě onCreate nastavíme zobrazení našeho xml souboru jako výchozí pro třídu.
+` setContentView(R.layout.recept_detail);`
+* Dále si vytvoříme ve třídě proměnné, se kterýma budeme pracovat.
+` TextView detailNazev, detailSuroviny, detailPostup;`\
+`int position;`\
+`String id2;`\
+`Button smazatBtn;`
+* V metodě onCreate si definujeme naše TextView a Button z xml souboru a získáme Extras z operace Intent, která nás přepnula do této třídy.
+detailNazev = findViewById(R.id.receptDetailNazev);
+       ` detailSuroviny = findViewById(R.id.receptDetailSuroviny);`\
+        `detailPostup = findViewById(R.id.receptDetailPostup);`\
+       ` smazatBtn = findViewById(R.id.smazatBtn);`\
+       ` Intent intent = getIntent();`\
+       ` position = intent.getExtras().getInt("position");`
+* Dále pomocí Arraylistu ze třídy MainActivity a pozice, kterou jsme si "poslali", uložíme do TextView hodnoty dané položky, na kterou jsme kliknuli.
+        ` id2 = MainActivity.receptArrayList.get(position).getId();`\
+        `detailNazev.setText(MainActivity.receptArrayList.get(position).getNazev());`\
+        `detailSuroviny.setText(MainActivity.receptArrayList.get(position).getSuroviny());`\
+        `detailPostup.setText(MainActivity.receptArrayList.get(position).getPostup());`
+* Jako poslední věc ve třídě ReceptActivity si vytvoříme metodu upravit, která nas přesměruje do třídy EditRecept, kterou si zachvíli vytvoříme. Opět využijeme Intent a opět do Extra přidáme hodnotu pozice("position") a spustíme popis operací.
+` public void upravit(View v){`
+    `    Intent ht1 = new Intent( ReceptActivity.this, EditRecept.class);`
+   `     ht1.putExtra("position", position );`
+    `    startActivity(ht1);`
+ `   }`
+* Teď už jenom v xml souboru nastavíme pro náš button tuhle metodu na onClick: `android:onClick="upravit"`.
+
+==Edit dat==
 
