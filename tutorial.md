@@ -186,7 +186,7 @@ Uložíme a zavřeme.
   `  }`\
 `}`
 * Bude to fungovat tak, že při vytvoření instanci třídy, budeme psát jako parametry, hodnoty které získáme z databáze a ty se uloží do proměnných třídy Recept, poté už jen budeme používat metody pro získávání dat, případně nastavení nové hodnoty.
-* Nyní si vytvoříme xml soubor, který se bude zobrazovat v ListView. Při vytváření si pojmenujeme soubor jako "recept_item" a Root element nastavíme LinearLayout. Když máme soubor vytvořený, v kódu přepíšeme "android:orientation" layoutu na "horizontal" a "android:layout_height" na "wrap_content", nyní si do layoutu přidáme TextView a nastavíme id("vypisReceptNazev")
+* Nyní si vytvoříme xml soubor, který se bude zobrazovat v ListView. Při vytváření si pojmenujeme soubor jako "recept_item" a Root element nastavíme LinearLayout. Když máme soubor vytvořený, v kódu přepíšeme "android:orientation" layoutu na "horizontal" a "android:layout_height" na "wrap_content", nyní si do layoutu přidáme TextView a nastavíme id("vypisReceptNazev")\
 `android:orientation="horizontal"`
  `   android:layout_width="match_parent"`
   `  android:layout_height="wrap_content"`
@@ -208,15 +208,15 @@ Uložíme a zavřeme.
  `       this.context = context;`\
  `       this.arrayListRecept = arrayListRecept;`\
  `   }`
-* Vytvoříme metodu getView s parametry "int position", "View convert"(před tím @Nullable - může být obsah nulový) a "ViewGroup parent"(před tím @NonNull). metoda bude používat LayoutInflater, který převezme náš "recept_item.xml" soubour a vytvoří různé objekty zobrazení. Dále nastavíme pro TextView název daného receptu podle pozice "position" a vrátíme hodnotu view.
+* Vytvoříme metodu getView s parametry "int position", "View convert"(před tím @Nullable - může být obsah nulový) a "ViewGroup parent"(před tím @NonNull). metoda bude používat LayoutInflater, který převezme náš "recept_item.xml" soubour a vytvoří různé objekty zobrazení. Dále nastavíme pro TextView název daného receptu podle pozice "position" a vrátíme hodnotu view.\
  ` public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {`\
     `    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recept_item, null, true);`\
    `    TextView vypisNazev = view.findViewById(R.id.vypisReceptNazev);`\
     `    vypisNazev.setText(arrayListRecept.get(position).getNazev());`\
      `   return view;`\
   `  }`
-* Přejdeme to třídy MainActivity. Vytvoříme si nový obejkt listView, uložíme do něj náš listview podle id, dále objekt adapter, do kterého uložíme uložíme instanci našeho adaptéru. Vytvoříme si ArrayList pro třídu Recept.
-Do třídy:
+* Přejdeme to třídy MainActivity. Vytvoříme si nový obejkt listView, uložíme do něj náš listview podle id, dále objekt adapter, do kterého uložíme uložíme instanci našeho adaptéru. Vytvoříme si ArrayList pro třídu Recept.\
+Do třídy:\
    ` ListView hlavniListView;`\
    ` ReceptAdapter adapter;`\
    ` public static ArrayList<Recept> receptArrayList = new ArrayList<>();`\
@@ -224,7 +224,7 @@ Do metody onCreate:\
    ` hlavniListView = findViewById(R.id.myListView);`\
    ` adapter = new ReceptAdapter(this, receptArrayList);`\
    ` hlavniListView.setAdapter(adapter);`
-* Přesuneme se na stránky hostingu, do správce souborů, manage website->tools->file manager->upload, a ve složce public_html vytvoříme soubor retrieve.php, který nám bude sloužit pro získávání dat z databáze. Vložíme do něho následující kód:
+* Přesuneme se na stránky hostingu, do správce souborů, manage website->tools->file manager->upload, a ve složce public_html vytvoříme soubor retrieve.php, který nám bude sloužit pro získávání dat z databáze. Vložíme do něho následující kód:\
     `<?php`\
    ` $db_name = "id18087905_mojedatabaze";`  // zase vyplníme údaje o databázi\
     `$mysql_username = "id18087905_realfaid";`\
@@ -246,34 +246,34 @@ Do metody onCreate:\
       `   $result["success"]="1"; `\
        `  echo json_encode($result); `\
       `   mysqli_close($connection); `
-* Rozklikneme si retrieve.php na view, a zkopírujeme, následně si url uložíme do proměnné url ve třídě MainActivity.
+* Rozklikneme si retrieve.php na view, a zkopírujeme, následně si url uložíme do proměnné url ve třídě MainActivity.\
 `String url = "https://sqlprojekt.000webhostapp.com/retrieve.php";`
-* Vytvoříme metodu nacistData a budeme ji volat v onCreate. Metoda bude sloužit pro načtení dat z databáze, hned na první obrazovce, při spuštění aplikace
+* Vytvoříme metodu nacistData a budeme ji volat v onCreate. Metoda bude sloužit pro načtení dat z databáze, hned na první obrazovce, při spuštění aplikace\
 `...`\
 `nacistData();`\
    ` }`\
 \
    ` public void nacistData(){`\
 `}`
-* V metodě si vytvoříme instanci StringRequest s názvem request, v parametrech bude metoda POST a url použijeme naši proměnnou. Další bude new Response.Listener, který když začneme psát a odtabujete, vytvoří se vám struktura sama. Bude to vypadat následovně:
- public void nactiData(){
+* V metodě si vytvoříme instanci StringRequest s názvem request, v parametrech bude metoda POST a url použijeme naši proměnnou. Další bude new Response.Listener, který když začneme psát a odtabujete, vytvoří se vám struktura sama. Bude to vypadat následovně:\
+` public void nactiData(){`\
       `  StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {`\
       `      @Override`\
       `      public void onResponse(String response) {`\
      `       }`\
     `    })`\
   `  }`
-* Na začátek vyčístíme arraylist `receptArrayList.clear();`, potom vytvoříme příkazy try a catch, do kterých budeme psát. Pro získávání dat ze serveru budeme používat JSON pro ukládání dat. Vytvoříme JSONObject, proměnnou String, a JSONArray, uložíme do nich následující hodnoty:
+* Na začátek vyčístíme arraylist `receptArrayList.clear();`, potom vytvoříme příkazy try a catch, do kterých budeme psát. Pro získávání dat ze serveru budeme používat JSON pro ukládání dat. Vytvoříme JSONObject, proměnnou String, a JSONArray, uložíme do nich následující hodnoty:\
 ` try{`\
 ` JSONObject jsonObject = new JSONObject(response);`\
 ` String sucess = jsonObject.getString("success");` // získá hodnotu "success"\
 `  JSONArray jsonArray = jsonObject.getJSONArray("recepty");` // získa si pole "recepty"
-* Následně vytvoříme podmínku a do podmínka bude pokud se "success" rovná "1", do podmínky dáme cyklus for, který se bude opakovat podle délky pole "jsonArray"(pole "recepty"), následně nový objekt JSONObject object, který vždy získá objekt podle hodnoty "i" z cyklu(půjde to postupně a vybere všechny objekty z databáze)
+* Následně vytvoříme podmínku a do podmínka bude pokud se "success" rovná "1", do podmínky dáme cyklus for, který se bude opakovat podle délky pole "jsonArray"(pole "recepty"), následně nový objekt JSONObject object, který vždy získá objekt podle hodnoty "i" z cyklu(půjde to postupně a vybere všechny objekty z databáze)\
 ` if(sucess.equals("1")){`\
  ` for(int i=0; i<jsonArray.length();i++){`\
 ` JSONObject object = jsonArray.getJSONObject(i);`
-* Vytvoříme proměnné string id, nazev, suroviny, postup a uložíme do nich hodnoty, které získáme z objektu(položka z databáze). Vytvoříme instanci třídy Recept a hodnoty parametrů budou ty Stringy, které jsme si vytvořili. Následně do našeho ArrayListu receptArrayList přidáme vytvořený objekt třídy Recept. Potom připomeneme adapteru, že se data změnila. Uzavřeme podmínku i try.
-` String id = object.getString("id");` - v závorkách jsou názvy, které jsme psali v "retrieve.php"\
+* Vytvoříme proměnné string id, nazev, suroviny, postup a uložíme do nich hodnoty, které získáme z objektu(položka z databáze). Vytvoříme instanci třídy Recept a hodnoty parametrů budou ty Stringy, které jsme si vytvořili. Následně do našeho ArrayListu receptArrayList přidáme vytvořený objekt třídy Recept. Potom připomeneme adapteru, že se data změnila. Uzavřeme podmínku i try.\
+` String id = object.getString("id");` // v závorkách jsou názvy, které jsme psali v "retrieve.php"\
  `  String nazev = object.getString("nazev");`\
 `  String suroviny = object.getString("suroviny");`\
 `  String postup = object.getString("postup");`\
@@ -281,7 +281,7 @@ Do metody onCreate:\
 `   receptArrayList.add(recept);`\
  `   adapter.notifyDataSetChanged();`\
  `  }}}`
-* Příkaz catch nám bude "chytat" JSONException, což označuje chybi v JSON, pojmenujeme e, a dovnitř napíšeme ať nám to vypíše tu chybu do, která by nastala, do konzole. Uzavřeme již celý Response.Listener. Na konec ještě vytvoříme Response.ErrorListener s metodou onErrorResponse, která nám vypíše chybu do zprávy Toast. Nevypisuje chybu JSON API, ale chybu requestu.
+* Příkaz catch nám bude "chytat" JSONException, což označuje chybi v JSON, pojmenujeme e, a dovnitř napíšeme ať nám to vypíše tu chybu do, která by nastala, do konzole. Uzavřeme již celý Response.Listener. Na konec ještě vytvoříme Response.ErrorListener s metodou onErrorResponse, která nám vypíše chybu do zprávy Toast. Nevypisuje chybu JSON API, ale chybu requestu.\
 ` catch(JSONException e){`\
 `     e.printStackTrace();`\
 `  }}}, `\
@@ -297,7 +297,7 @@ Do metody onCreate:\
   `  }`
 
 ==Rozkliknutí položky v ListView==
-* Ve třídě MainActivity, v metodě onCreate, si vytvoříme OnItemClickListener na náš ListView. Do něho vložíme Intent, pro přepnutí do jiné třídy, do Extra přidáme hodnotou pozice("position") položky na kterou jsme kliknuli a následně provedeme.
+* Ve třídě MainActivity, v metodě onCreate, si vytvoříme OnItemClickListener na náš ListView. Do něho vložíme Intent, pro přepnutí do jiné třídy, do Extra přidáme hodnotou pozice("position") položky na kterou jsme kliknuli a následně provedeme.\
  `hlavniListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {`\
            ` @Override`\
            ` public void onItemClick(AdapterView<?> parent, View view, int position, long id) {`\
@@ -306,7 +306,7 @@ Do metody onCreate:\
               `  view.getContext().startActivity(ht1);`\
           `  }`\
     `    });`
-* Vytvoříme si novou třídu ReceptActivity, bude sloužit pro zobrazení dáné položky, na kterou jsme kliknuli. Bude dědit po třídě AppCompatActivity, vytvoříme si metodu onCreate a metody pro zobrazení a nastavení menu.
+* Vytvoříme si novou třídu ReceptActivity, bude sloužit pro zobrazení dáné položky, na kterou jsme kliknuli. Bude dědit po třídě AppCompatActivity, vytvoříme si metodu onCreate a metody pro zobrazení a nastavení menu.\
  `package com.example.sqlprojekt;`\
 `public class ReceptActivity extends AppCompatActivity {`\
     `@Override`\
@@ -330,26 +330,26 @@ Do metody onCreate:\
     `            return super.onOptionsItemSelected(item);`\
    `     }}}`
 * Budeme potřebovat si vytvořit xml soubor obrazovky, která bude sloužit pro zobrazení detailu receptu po rozkliknutí. Pojmenujeme ho recept_detail. Budeme v něm potřebovat 3x TextView, pro název receptu, suroviny a postup, dále tlačítko které nás přesměruje na úpravu receptu. Můžeme také přidat nadpisy k jednotlivým informacím o receptu. Všemu nastavíme id, v mém případě to jsou: receptDetailNazev, receptDetailSuroviny, receptDetailPostup a upravitBtn. Textview pro suroviny a recept si můžete vložit do Scrollview.
-* Ve třídě ReceptActivity si v metodě onCreate nastavíme náš xml soubor jako view.
+* Ve třídě ReceptActivity si v metodě onCreate nastavíme náš xml soubor jako view.\
 ` setContentView(R.layout.recept_detail);`
-* Dále si vytvoříme ve třídě proměnné, se kterýma budeme pracovat.
+* Dále si vytvoříme ve třídě proměnné, se kterýma budeme pracovat.\
 ` TextView detailNazev, detailSuroviny, detailPostup;`\
 `int position;`\
 `String id2;`\
 `Button smazatBtn;`
 * V metodě onCreate si definujeme naše TextView a Button z xml souboru a získáme Extras z operace Intent, která nás přepnula do této třídy.
-detailNazev = findViewById(R.id.receptDetailNazev);
+detailNazev = findViewById(R.id.receptDetailNazev);\
        ` detailSuroviny = findViewById(R.id.receptDetailSuroviny);`\
         `detailPostup = findViewById(R.id.receptDetailPostup);`\
        ` smazatBtn = findViewById(R.id.smazatBtn);`\
        ` Intent intent = getIntent();`\
        ` position = intent.getExtras().getInt("position");`
-* Dále pomocí Arraylistu ze třídy MainActivity a pozice, kterou jsme si "poslali", uložíme do TextView hodnoty dané položky, na kterou jsme kliknuli.
+* Dále pomocí Arraylistu ze třídy MainActivity a pozice, kterou jsme si "poslali", uložíme do TextView hodnoty dané položky, na kterou jsme kliknuli.\
         ` id2 = MainActivity.receptArrayList.get(position).getId();`\
         `detailNazev.setText(MainActivity.receptArrayList.get(position).getNazev());`\
         `detailSuroviny.setText(MainActivity.receptArrayList.get(position).getSuroviny());`\
         `detailPostup.setText(MainActivity.receptArrayList.get(position).getPostup());`
-* Jako poslední věc ve třídě ReceptActivity si vytvoříme metodu upravit, která nas přesměruje do třídy EditRecept, kterou si zachvíli vytvoříme. Opět využijeme Intent a opět do Extra přidáme hodnotu pozice("position") a spustíme popis operací.
+* Jako poslední věc ve třídě ReceptActivity si vytvoříme metodu upravit, která nas přesměruje do třídy EditRecept, kterou si zachvíli vytvoříme. Opět využijeme Intent a opět do Extra přidáme hodnotu pozice("position") a spustíme popis operací.\
 ` public void upravit(View v){`\
     `    Intent ht1 = new Intent( ReceptActivity.this, EditRecept.class);`\
    `     ht1.putExtra("position", position );`\
@@ -358,7 +358,7 @@ detailNazev = findViewById(R.id.receptDetailNazev);
 * Teď už jenom v xml souboru nastavíme pro náš button tuhle metodu na onClick: `android:onClick="upravit"`.
 
 ==Mazání dat==
-* Pro mázání dat budeme potřebovat další php soubor na našem hostingu. Takže se přesuneme tam a vytvoříme soubor "delete.php". V něm se jako vždy připojíme do databáze, uložíme do přoměnné id, které si pošleme z appky, a následně pres SQL dotaz vymažeme položku podle id.
+* Pro mázání dat budeme potřebovat další php soubor na našem hostingu. Takže se přesuneme tam a vytvoříme soubor "delete.php". V něm se jako vždy připojíme do databáze, uložíme do přoměnné id, které si pošleme z appky, a následně pres SQL dotaz vymažeme položku podle id.\
 ` <?php`\
 `$db_name = "id18087905_mojedatabaze";`\
 `$mysql_username = "id18087905_realfaid";`\
@@ -376,16 +376,17 @@ detailNazev = findViewById(R.id.receptDetailNazev);
 `}`\
 `mysqli_close($connection);`\
 `?>`
-* Nyní si vytvoříme novou třídu EditRecept, bude stejná jako ostatní třídy, které používame pro zobrazení jiné stránky, bude dědit po třídě AppCompatActivity, vytvoříme metodu onCreate a metody pro zobrazení a práci s menu. (Vše můžeme zkopírovat z jiné třídy a přepsat hodnoty). ` package com.example.sqlprojekt;`\
+* Nyní si vytvoříme novou třídu EditRecept, bude stejná jako ostatní třídy, které používame pro zobrazení jiné stránky, bude dědit po třídě AppCompatActivity, vytvoříme metodu onCreate a metody pro zobrazení a práci s menu. (Vše můžeme zkopírovat z jiné třídy a přepsat hodnoty).\
+` package com.example.sqlprojekt;`\
 `public class EditRecept extends AppCompatActivity`\
 `{`\
     `@Override`\
     `protected void onCreate(Bundle savedInstanceState){}`
 * Vytvoříme si nový xml soubor, pro edit a mazání dat. Pojmenujeme si ho edit_recept, budeme potřebovat 3x EditText a 2x Button. Nastavíme objektům id(editNazev, editSuroviny, editPostup, ulozBtn, smazatBtn).
-* Ve tříde EditRecept. V metodě onCreate nastavíme aby se xml soubor edit_recept nastavil jako view.
+* Ve tříde EditRecept. V metodě onCreate nastavíme aby se xml soubor edit_recept nastavil jako view.\
 `setContentView(R.layout.edit_recept);`
-* Vytvoříme metodu smazatData s parametrem final String id1, kvůli tomu, ať se ví, co mazat. Vnitřek metody bude vypadat velmi podobně jako metoda pro přidávání dat. Použijeme StringRequest, vytvoříme její instanci, s parametry, metody push, url našeho souboru "delete.php", a onResponse a onErrorResponse metody.
-* StringRequest request = new StringRequest(Request.Method.POST, "https://sqlprojekt.000webhostapp.com/delete.php",
+* Vytvoříme metodu smazatData s parametrem final String id1, kvůli tomu, ať se ví, co mazat. Vnitřek metody bude vypadat velmi podobně jako metoda pro přidávání dat. Použijeme StringRequest, vytvoříme její instanci, s parametry, metody push, url našeho souboru "delete.php", a onResponse a onErrorResponse metody.\
+`StringRequest request = new StringRequest(Request.Method.POST, "https://sqlprojekt.000webhostapp.com/delete.php",`\
 `   new Response.Listener<String>() {`\
 `  @Override`\
 `  public void onResponse(String response) {`\
@@ -401,7 +402,7 @@ detailNazev = findViewById(R.id.receptDetailNazev);
          `   public void onErrorResponse(VolleyError error) {`\
          `       Toast.makeText(EditRecept.this, error.getMessage(), Toast.LENGTH_SHORT).show();`\
          `   } })`
-* V další části si vytvoříme Mapu hodnot, které budou odeslány pomocí POST, pošleme pomocí ní hodnotu id.
+* V další části si vytvoříme Mapu hodnot, které budou odeslány pomocí POST, pošleme pomocí ní hodnotu id.\
 ` {`\
           `  @Override`\
            ` protected Map<String, String> getParams() throws AuthFailureError{`\
@@ -409,28 +410,28 @@ detailNazev = findViewById(R.id.receptDetailNazev);
             `    params.put("id", id1);` //id je pod jakým "názvem" to posílame, id1 je hodnota, kterou posíláme\
           `      return params;`\
          `   }};`
-* V poslední části si vytvoříme RequestQueue, frontu na odesílání požadavků a přidáme do ní náš požadavek “request”.
+* V poslední části si vytvoříme RequestQueue, frontu na odesílání požadavků a přidáme do ní náš požadavek “request”.\
  `RequestQueue requestQueue = Volley.newRequestQueue(this);`\
      `   requestQueue.add(request);`\
    ` }`
-* Nyní si ve tříde EditRecept vytvoříme objekty EditText edNazev, edSuroviny, edPostup a proměnné String id a int position.
+* Nyní si ve tříde EditRecept vytvoříme objekty EditText edNazev, edSuroviny, edPostup a proměnné String id a int position.\
 `int position;`\
   `  String id;`\
   `  EditText edNazev, edSuroviny, edPostup;`
-* V metodě onCreate si do EditTextů uložíme naše EditTexty z xml souboru, vytvoříme objekt intent, do kterého získame Intent, získáme z tama hodnotu pozice a následně hodnotu proměnné id a jako text EditTextů nastavíme hodnoty, dané položky, podle pozice.
+* V metodě onCreate si do EditTextů uložíme naše EditTexty z xml souboru, vytvoříme objekt intent, do kterého získame Intent, získáme z tama hodnotu pozice a následně hodnotu proměnné id a jako text EditTextů nastavíme hodnoty, dané položky, podle pozice.\
 `Intent intent = getIntent();`\
        `position = intent.getExtras().getInt("position");`\
        ` id = MainActivity.receptArrayList.get(position).getId();`\
        ` edNazev.setText(MainActivity.receptArrayList.get(position).getNazev());`\
         `edSuroviny.setText(MainActivity.receptArrayList.get(position).getSuroviny());`\
        ` edPostup.setText(MainActivity.receptArrayList.get(position).getPostup());`
-* Ve tříde EditRecept vytvoříme novou metodu smazData s parametry View view, která bude sloužit pro zavolání metody smazatData s parametrem id, které získáváme v onCreate metodě. A následně nás přepne zpět do třídy MainActivity a na hlavní stránku.
-` public void smazData(View v){`
-        `smazatData(id);`
-       ` Intent ht1 = new Intent( EditRecept.this, MainActivity.class);`
-       ` startActivity(ht1);`
+* Ve tříde EditRecept vytvoříme novou metodu smazData s parametry View view, která bude sloužit pro zavolání metody smazatData s parametrem id, které získáváme v onCreate metodě. A následně nás přepne zpět do třídy MainActivity a na hlavní stránku.\
+` public void smazData(View v){`\
+        `smazatData(id);`\
+       ` Intent ht1 = new Intent( EditRecept.this, MainActivity.class);`\
+       ` startActivity(ht1);`\
    ` }`
-* Na konec nastavíme v xml souboru edit_recept, Buttonu na odstraněním, metodu smazData jako onClick.
+* Na konec nastavíme v xml souboru edit_recept, Buttonu na odstraněním, metodu smazData jako onClick.\
 `android:onClick="smazData"`
 
 
