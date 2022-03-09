@@ -1,7 +1,7 @@
 Tutoriál pro vytvoření příkladové aplikace pro práci s SQL databází.
 Budeme používat vývojové prostředí "Android studio" a webhosting "000webhost",
 
-### Vytvoření projektu a základního layoutu
+## Vytvoření projektu a základního layoutu
 * V android studiu si vytvoříme nový projekt (v horní liště "file->new->New project") a&nbsp;vybereme&nbsp;"Empty&nbsp;Activity".
 
 * Zadáme název (Name) našeho projektu (v mém případě "sqlprojekt"), jazyk (Language) vybereme "Java" a&nbsp;minimální SDK (Minimal SDK), doporučoval bych API androidu 5 nebo 6, aby šla aplikace spustit na&nbsp;většině mobilních zařízeních. Klikneme na finish pro vytvoření a počkáme než se projekt vytvoří.
@@ -42,7 +42,7 @@ zobrazíme menu, kód voláme ve třídě, kde potřebujeme menu zobrazit, v na�
 ` return super.onOptionsItemSelected(item);  } }`\
 nastavíme položkám v menu, "co mají dělat". Položce "Domů", která má "id=home" nastavíme, že má přepnout na třídu "MainActivity".
 
-### Vytvoření databáze a připojení k ní
+## Vytvoření databáze a připojení k ní
 * Databázi budeme provozovat na "https://cz.000webhost.com/", vytvoříme si zde novou stránku, používat budeme ale jenom databázi. Poté přejdeme na "Manage website" v levé liště "Tools" a následně Database manager. Vytvoříme si novou databázi a klikneme na "manage database" a vybereme "phpmyadmin". V naší databázi si vytvoříme novou tabulku, kterou budeme používat. V našem případě tabulka "recepty" se sloupci "id", "nazev", "suroviny", "postup". "id" bude typ int a bude auto-increment, zbytek typ text.
 
 * Nyní přejdeme v levé liště na "File manager", klikneme na upload files a ve složce "public_html" vytvoříme soubor "insert.php"
@@ -69,7 +69,7 @@ nastavíme položkám v menu, "co mají dělat". Položce "Domů", která má "i
 Uložíme a zavřeme.
 * Jestli nám vše funguje jak má můžeme otestovat, klikneme pravým na soubor "insert.php" a vybereme "View", pokud nám to vyhodí hlášku, kterou jsme si nastavili pokud vše klapne, je to vpořádku, pokud nám to vyhodí hlášku, kterou jsem si nastavili, když něco neklapne, něco je nejspíš špatně napsané.
 
-### Vložení dat v aplikaci
+## Vložení dat v aplikaci
 * ,Ve tříde AddRecept, kterou již máme vytvořenou, vytvoříme onCreate metodu a nastavíme layout, který jsme si vytvořili(Můžeme si pomoct a urychlit čas a zkopírovat to ze třídy MainActivity). Zkopírujeme si také kód pro zobrazení menu a ovládání položek v něm(onCreateOptionsMenu a onOptionsItemSelected).
 * Když máme vytvořenou třídu i metodu onCreate nadefinujeme si Button a EditTexty, se kterýma budeme pracovat, následovně:\
 `public class AddRecept extends AppCompatActivity {`\
@@ -146,7 +146,7 @@ Uložíme a zavřeme.
    `         requestQueue.add(request);`\
   `  }`
 
-### Výpis dat do Listview
+## Výpis dat do Listview
 * Jako první sa na naší první stránku musíme přidat ListView, takže v xml souboru, který používáme na hlavní stránce, přidáme ListView, ukotvíme a nastavíme id.
 
 * Nyní si vytvoříme novou trídu s názvem Recept, bude to náš model, pro práci s databází. V něm si vytvoříme proměnné String, konstruktor a metody pro získávání a nastavování hodnot(gettery a settery). Bude to vypadat takhle:\
@@ -298,7 +298,7 @@ Do metody onCreate:\
    `     requestQueue.add(request);`\
   `  }`
 
-### Rozkliknutí položky v ListView
+## Rozkliknutí položky v ListView
 * Ve třídě MainActivity, v metodě onCreate, si vytvoříme OnItemClickListener na náš ListView. Do něho vložíme Intent, pro přepnutí do jiné třídy, do Extra přidáme hodnotou pozice("position") položky na kterou jsme kliknuli a následně provedeme.\
  `hlavniListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {`\
            ` @Override`\
@@ -359,7 +359,7 @@ detailNazev = findViewById(R.id.receptDetailNazev);\
  `   }`
 * Teď už jenom v xml souboru nastavíme pro náš button tuhle metodu na onClick: `android:onClick="upravit"`.
 
-### Mazání dat
+## Mazání dat
 * Pro mázání dat budeme potřebovat další php soubor na našem hostingu. Takže se přesuneme tam a vytvoříme soubor "delete.php". V něm se jako vždy připojíme do databáze, uložíme do přoměnné id, které si pošleme z appky, a následně pres SQL dotaz vymažeme položku podle id.\
 ` <?php`\
 `$db_name = "id18087905_mojedatabaze";`\
