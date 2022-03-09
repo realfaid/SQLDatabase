@@ -25,7 +25,7 @@ Budeme používat vývojové prostředí "Android studio" a webhosting "000webho
 * Teď umí naše aplikace po kliknutí na tlačítko "Přidat recept" zobrazit stránku na přidávání, ale musíme vyřešit jak se z ní dostat, to vyřešíme pomocí menu.
 * Ve složce "res" vytvoříme složku ("Directory") "menu", do složky vytvoříme "Menu Resource File" pojmenovaný "main_menu".
 * Pomocí zobrazení "Design" přidáme "Menu Item" a přejdeme do kódu. Hodnota atributu "android:title" slouží jako název položky v menu. V našem případě nastavíme na "Domů", nastavíme položce atribut "id" `android:id="@+id/home"` a dále přidáme atribut, aby byla položka vždy zobrazena `app:showAsAction="always"`.
-* Zobrazeni menu pomocí kódu:
+* Zobrazeni menu pomocí kódu:\
 `public boolean onCreateOptionsMenu(Menu menu){ `\
 `MenuInflater inflater = getMenuInflater();  `\
 ` inflater.inflate(R.menu.main_menu, menu);  `//main_menu" je název našeho menu\
@@ -187,20 +187,21 @@ Uložíme a zavřeme.
 `}`
 * Bude to fungovat tak, že při vytvoření instanci třídy, budeme psát jako parametry, hodnoty které získáme z databáze a ty se uloží do proměnných třídy Recept, poté už jen budeme používat metody pro získávání dat, případně nastavení nové hodnoty.
 * Nyní si vytvoříme xml soubor, který se bude zobrazovat v ListView. Při vytváření si pojmenujeme soubor jako "recept_item" a Root element nastavíme LinearLayout. Když máme soubor vytvořený, v kódu přepíšeme "android:orientation" layoutu na "horizontal" a "android:layout_height" na "wrap_content", nyní si do layoutu přidáme TextView a nastavíme id("vypisReceptNazev")\
-`android:orientation="horizontal"`
- `   android:layout_width="match_parent"`
-  `  android:layout_height="wrap_content"`
+`android:orientation="horizontal"`\
+ `   android:layout_width="match_parent"`\
+  `  android:layout_height="wrap_content"`\
   `  android:padding="8dp">`
 
-  `  <TextView`
-    `    android:id="@+id/vypisReceptNazev"`
-    `    android:layout_width="342dp"`
-     `   android:layout_height="69dp"`
-      `  android:gravity="center_vertical|center"`
-       ` android:text="nazev"`
+  `  <TextView`\
+    `    android:id="@+id/vypisReceptNazev"`\
+    `    android:layout_width="342dp"`\
+     `   android:layout_height="69dp"`\
+      `  android:gravity="center_vertical|center"`\
+       ` android:text="nazev"`\
      `   android:textSize="20dp" />`
 * Jako další budeme potřebovat adapter, takže vytvoříme novou třídu a pojmenujeme ji ReceptAdapter, ta bude sloužit pro zobrazení položek v ListView. Třída bude dědit ArrayAdapter s modelem Recept : `public class ReceptAdapter extends ArrayAdapter<Recept>`
-* Vytvoříme objekt Context a pojmenujeme context a objekt List třídy Recept a pojmenujeme arrayListRecept:` Context context;`\
+* Vytvoříme objekt Context a pojmenujeme context a objekt List třídy Recept a pojmenujeme arrayListRecept:\
+` Context context;`
 `    List<Recept> arrayListRecept;`
 * Jako další vytvoříme konstruktor s parametrama Context context a List<Recept> arrayListRecept, taky nastavíme aby to neprošlo pokud hodnota context bude nulová(null) a to pomocí @NonNull před conext, konstruktor nastaví pro arrayList položku pro zobrazování pomocí super, také uloží zadané hodnoty při volání třídy do objektů context a arraylist ve třídě.\
  ` public ReceptAdapter(@NonNull Context context, List<Recept> arrayListRecept) {`\
@@ -241,7 +242,7 @@ Do metody onCreate:\
     `    $index["nazev"]     = $row["1"];`\
     `    $index["suroviny"]  = $row["2"];`\
     `    $index["postup"]    = $row["3"];`\
-     `   array_push($result["recepty"], $index); // pushne data\
+     `   array_push($result["recepty"], $index); // pushne data `\
   `  }`\
       `   $result["success"]="1"; `\
        `  echo json_encode($result); `\
