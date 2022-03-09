@@ -199,9 +199,10 @@ Uložíme a zavřeme.
       `  android:gravity="center_vertical|center"`\
        ` android:text="nazev"`\
      `   android:textSize="20dp" />`
-* Jako další budeme potřebovat adapter, takže vytvoříme novou třídu a pojmenujeme ji ReceptAdapter, ta bude sloužit pro zobrazení položek v ListView. Třída bude dědit ArrayAdapter s modelem Recept : `public class ReceptAdapter extends ArrayAdapter<Recept>`
+* Jako další budeme potřebovat adapter, takže vytvoříme novou třídu a pojmenujeme ji ReceptAdapter, ta bude sloužit pro zobrazení položek v ListView. Třída bude dědit ArrayAdapter s modelem Recept : \
+`public class ReceptAdapter extends ArrayAdapter<Recept>`
 * Vytvoříme objekt Context a pojmenujeme context a objekt List třídy Recept a pojmenujeme arrayListRecept:\
-` Context context;`
+` Context context;`\
 `    List<Recept> arrayListRecept;`
 * Jako další vytvoříme konstruktor s parametrama Context context a List<Recept> arrayListRecept, taky nastavíme aby to neprošlo pokud hodnota context bude nulová(null) a to pomocí @NonNull před conext, konstruktor nastaví pro arrayList položku pro zobrazování pomocí super, také uloží zadané hodnoty při volání třídy do objektů context a arraylist ve třídě.\
  ` public ReceptAdapter(@NonNull Context context, List<Recept> arrayListRecept) {`\
