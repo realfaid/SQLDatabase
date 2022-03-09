@@ -1,4 +1,4 @@
-NADPIS
+Tutoriál pro vytvoření příkladové aplikace pro práci s SQL databází.
 Budeme používat vývojové prostředí "Android studio" a webhosting "000webhost",
 
 ==Vytvoření projektu a základního layoutu==
@@ -48,23 +48,23 @@ nastavíme položkám v menu, "co mají dělat". Položce "Domů", která má "i
 * Nyní přejdeme v levé liště na "File manager", klikneme na upload files a ve složce "public_html" vytvoříme soubor "insert.php"
 * Zde nastavíme údaje pro připojení k databázi a sql dotaz pro vložení dat do databáze.\
 ` <?php `\
-`$db_name = "id18087905_mojedatabaze";`  - název databáze\
-`$mysql_username = "id18087905_realfaid";` - jména nás jako uživatele\
-`$mysql_pasword = "heslo";` - naše heslo k databázi\
-`$server_name = "localhost";` - název serveru na kterém to jede\
-`$connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name);` - slouží k připojení k databázi\
-`$nazev = $_POST["nazev"];` - do proměnné $nazev uloží data které se odešlou z aplikace\
-`$suroviny = $_POST["suroviny"];` - do proměnné $suroviny uloží data které se odešlou z aplikace\
-`$postup = $_POST["postup"];` - do proměnné $postup uloží data které se odešlou z aplikace\
-`$sql = "INSERT INTO recepty(nazev, suroviny, postup) VALUES('$nazev', '$suroviny', '$postup')";` - sql dotaz na vložení dat\
-`$result = mysqli_query($connection,$sql);` - výsledek připojení a následného dotazu\
+`$db_name = "id18087905_mojedatabaze";`  // název databáze\
+`$mysql_username = "id18087905_realfaid";` // jména nás jako uživatele\
+`$mysql_pasword = "heslo";` // naše heslo k databázi\
+`$server_name = "localhost";` // název serveru na kterém to jede\
+`$connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name);` // slouží k připojení k databázi\
+`$nazev = $_POST["nazev"];` // do proměnné $nazev uloží data které se odešlou z aplikace\
+`$suroviny = $_POST["suroviny"];` // do proměnné $suroviny uloží data které se odešlou z aplikace\
+`$postup = $_POST["postup"];` // do proměnné $postup uloží data které se odešlou z aplikace\
+`$sql = "INSERT INTO recepty(nazev, suroviny, postup) VALUES('$nazev', '$suroviny', '$postup')";` // sql dotaz na vložení dat\
+`$result = mysqli_query($connection,$sql);` // výsledek připojení a následného dotazu\
 `if($result){`\
-  `  echo "Data vložena";` - pokud se podaří vše vypíše se "Data vložena"\
+  `  echo "Data vložena";` // pokud se podaří vše vypíše se "Data vložena"\
 `}`\
 `else{`\
- `   echo "chyba";` - pokud se něco nepodaří vypíše to chyba\
+ `   echo "chyba";` // pokud se něco nepodaří vypíše to chyba\
 `}`\
-`mysqli_close($connection);` - ukončení připojení k databázi\
+`mysqli_close($connection);` // ukončení připojení k databázi\
 `?>`\
 Uložíme a zavřeme.
 * Jestli nám vše funguje jak má můžeme otestovat, klikneme pravým na soubor "insert.php" a vybereme "View", pokud nám to vyhodí hlášku, kterou jsme si nastavili pokud vše klapne, je to vpořádku, pokud nám to vyhodí hlášku, kterou jsem si nastavili, když něco neklapne, něco je nejspíš špatně napsané.
@@ -73,16 +73,16 @@ Uložíme a zavřeme.
 * ,Ve tříde AddRecept, kterou již máme vytvořenou, vytvoříme onCreate metodu a nastavíme layout, který jsme si vytvořili(Můžeme si pomoct a urychlit čas a zkopírovat to ze třídy MainActivity). Zkopírujeme si také kód pro zobrazení menu a ovládání položek v něm(onCreateOptionsMenu a onOptionsItemSelected).
 * Když máme vytvořenou třídu i metodu onCreate nadefinujeme si Button a EditTexty, se kterýma budeme pracovat, následovně:\
 `public class AddRecept extends AppCompatActivity {`\
- `   EditText txtname, txtresources, txtprocess;` - pojmenujeme si podle sebe\
-  `  Button confirmRecept;` - pojmenujeme si podle sebe\
+ `   EditText txtname, txtresources, txtprocess;` // pojmenujeme si podle sebe\
+  `  Button confirmRecept;` // pojmenujeme si podle sebe\
 `    @Override`\
   `  protected void onCreate(Bundle savedInstanceState) {`\
      `   super.onCreate(savedInstanceState);`\
    `setContentView(R.layout.add_recept);`\
-    `   txtname = findViewById(R.id.editReceptName);` - definujeme podle ID\
-    `    txtresources = findViewById(R.id.editReceptResources);` - definujeme podle ID\
-    `    txtprocess = findViewById(R.id.editReceptProcess);` - definujeme podle ID\
-    `  confirmRecept = findViewById(R.id.btnConfirmAddRecept);` - definujeme podle ID\
+    `   txtname = findViewById(R.id.editReceptName);` // definujeme podle ID\
+    `    txtresources = findViewById(R.id.editReceptResources);` // definujeme podle ID\
+    `    txtprocess = findViewById(R.id.editReceptProcess);` // definujeme podle ID\
+    `  confirmRecept = findViewById(R.id.btnConfirmAddRecept);` // definujeme podle ID\
 * V metodě onCreate vytvoříme OnClickListener pro náš button a do něho provedení metody "insertData", kterou zachvíli i vytvoříme:\
  `confirmRecept.setOnClickListener(new View.OnClickListener()  {`\
   `@Override`\
@@ -91,7 +91,7 @@ Uložíme a zavřeme.
   ` }`
 * Vytvoříme metodu insertData, vytvoříme proměnné String, do kterých se bude ukládat text napsaný v EditTextech:\
  `public void insertData() { `\
- `  String nazev = txtname.getText().toString().trim(); ` - do proměnné se nám uloží text z EditTextu txtname\
+ `  String nazev = txtname.getText().toString().trim(); ` // do proměnné se nám uloží text z EditTextu txtname\
  `  String suroviny = txtresources.getText().toString().trim(); `\
  `  String postup = txtprocess.getText().toString().trim(); `
 * Teď si vytvoříme podmínky pro kontrolu, zda je v EditTextu něco napsané, to uděláme tak, že pokud proměnná textu(nazev, suroviny a postup) je prázdná, vypíše se, že je políčko prázdné, bude to vypadat nějak takhle:\
@@ -107,9 +107,9 @@ Uložíme a zavřeme.
   `      }`
 * Pokud ani jedna z podmínek nenastane, nastavíme co se má stát, a to bude samotné odeslání dat. Bude to vypadat nějak takhle a následně si to popíšeme:
 
-* V první části si vytvoříme StringRequest na načtení kódu ze souboru na internetu, určíme metodu POST a zadáme url našeho insert souboru, potom nastavíme pokud to vypíše výsledek "Data vložena"(To co jsme si psali v souboru "insert.php") tak nám to napíše "Data Vložena", pokud ne, vypíše se "chybička".\
+* V první části si vytvoříme StringRequest na načtení kódu ze souboru na internetu, určíme metodu POST a zadáme url našeho insert souboru, potom nastavíme pokud nenastane chyba a kód se provede a vásledek se bude rovnat "Data vložena"(To co jsme si psali v souboru "insert.php") tak nám to napíše "Data Vložena", pokud ne, vypíše se "chybička".\
 `else{`\
- `           StringRequest request = new\ StringRequest(Request.Method.POST,"https://sqlprojekt.000webhostapp.com/insert.php",` - tohle je URL adresa na náš soubor, který jsme si vytvořili\
+ `           StringRequest request = new\ StringRequest(Request.Method.POST,"https://sqlprojekt.000webhostapp.com/insert.php",`\
  `                   new Response.Listener<String>() {`\
   `                      @Override`\
   `                      public void onResponse(String response) {`\
@@ -128,13 +128,14 @@ Uložíme a zavřeme.
   `                  Toast.makeText(AddRecept.this, error.getMessage(), Toast.LENGTH_SHORT).show();`\
   `          }`\
  `       }`\
-   `         ){`
-* V další části si vytvoříme Mapu parametrů, které budou použiti pro metodu POST\
-   `             @Override`\
+   `         )`
+* V další části si vytvoříme Mapu hodnot, které budou odeslány pomocí POST, pošleme pomocí ní hodnoty pro název, suroviny a postup.\
+ ` {`\
+ `             @Override`\
    `             protected Map<String, String> getParams() throws AuthFailureError {`\
    `                 Map<String,String> params = new HashMap<String,String>();`\
-   `                 params.put("nazev",nazev);` - na prvním místě v závorce, jak se pojmenuje, druhé místo, obsah.\
-V našem případě na prvním místě název, který jsme použili i v souboru "insert.php" v závorce u metody POST, druhé místo naše proměnná\
+   `                 params.put("nazev",nazev);` //na prvním místě v závorce, jak se pojmenuje, druhé místo, obsah.\
+//V našem případě na prvním místě název, který jsme použili i v souboru "insert.php" v závorce u metody POST, druhé místo naše proměnná\
     `                params.put("suroviny",suroviny);`\
    `                 params.put("postup",postup);`\
    `                 return params;`\
@@ -203,7 +204,7 @@ V našem případě na prvním místě název, který jsme použili i v souboru 
 `    List<Recept> arrayListRecept;`
 * Jako další vytvoříme konstruktor s parametrama Context context a List<Recept> arrayListRecept, taky nastavíme aby to neprošlo pokud hodnota context bude nulová(null) a to pomocí @NonNull před conext, konstruktor nastaví pro arrayList položku pro zobrazování pomocí super, také uloží zadané hodnoty při volání třídy do objektů context a arraylist ve třídě.\
  ` public ReceptAdapter(@NonNull Context context, List<Recept> arrayListRecept) {`\
- `       super(context, R.layout.recept_item,arrayListRecept);` - recept_item - název xml souboru pro položku v listview\
+ `       super(context, R.layout.recept_item,arrayListRecept);` // recept_item - název xml souboru pro položku v listview\
  `       this.context = context;`\
  `       this.arrayListRecept = arrayListRecept;`\
  `   }`
@@ -225,22 +226,22 @@ Do metody onCreate:\
    ` hlavniListView.setAdapter(adapter);`
 * Přesuneme se na stránky hostingu, do správce souborů, manage website->tools->file manager->upload, a ve složce public_html vytvoříme soubor retrieve.php, který nám bude sloužit pro získávání dat z databáze. Vložíme do něho následující kód:
     `<?php`\
-   ` $db_name = "id18087905_mojedatabaze";`  - zase vyplníme údaje o databázi\
+   ` $db_name = "id18087905_mojedatabaze";`  // zase vyplníme údaje o databázi\
     `$mysql_username = "id18087905_realfaid";`\
     `$mysql_pasword = "_Maturitni123";`\
    ` $server_name = "localhost";`\
-   ` $connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name);` - připojíme se\
+   ` $connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name);` // připojíme se\
    ` $result = array();`\
-   ` $result["recepty"] = array();` - v závorce název databáze\
-   ` $select = "SELECT * from recepty";` - sql dotaz \
+   ` $result["recepty"] = array();` // v závorce název databáze\
+   ` $select = "SELECT * from recepty";` // sql dotaz \
    ` $responce = mysqli_query($connection,$select);`\
   `  while($row = mysqli_fetch_array($responce))`\
    ` {`\
-    `    $index["id"]        = $row["0"];` - uloží data\
+    `    $index["id"]        = $row["0"];` // uloží data z prvního sloupečku pod názvem "id"\
     `    $index["nazev"]     = $row["1"];`\
     `    $index["suroviny"]  = $row["2"];`\
     `    $index["postup"]    = $row["3"];`\
-     `   array_push($result["recepty"], $index);\ - pushne data\
+     `   array_push($result["recepty"], $index); // pushne data\
   `  }`\
       `   $result["success"]="1"; `\
        `  echo json_encode($result); `\
@@ -265,8 +266,8 @@ Do metody onCreate:\
 * Na začátek vyčístíme arraylist `receptArrayList.clear();`, potom vytvoříme příkazy try a catch, do kterých budeme psát. Pro získávání dat ze serveru budeme používat JSON pro ukládání dat. Vytvoříme JSONObject, proměnnou String, a JSONArray, uložíme do nich následující hodnoty:
 ` try{`\
 ` JSONObject jsonObject = new JSONObject(response);`\
-` String sucess = jsonObject.getString("success");` - získá hodnotu "success"\
-`  JSONArray jsonArray = jsonObject.getJSONArray("recepty");` - získa si pole "recepty"
+` String sucess = jsonObject.getString("success");` // získá hodnotu "success"\
+`  JSONArray jsonArray = jsonObject.getJSONArray("recepty");` // získa si pole "recepty"
 * Následně vytvoříme podmínku a do podmínka bude pokud se "success" rovná "1", do podmínky dáme cyklus for, který se bude opakovat podle délky pole "jsonArray"(pole "recepty"), následně nový objekt JSONObject object, který vždy získá objekt podle hodnoty "i" z cyklu(půjde to postupně a vybere všechny objekty z databáze)
 ` if(sucess.equals("1")){`\
  ` for(int i=0; i<jsonArray.length();i++){`\
@@ -328,8 +329,8 @@ Do metody onCreate:\
     `        default:`\
     `            return super.onOptionsItemSelected(item);`\
    `     }}}`
-* Budeme potřebovat si vytvořit xml soubor obrazovky, která bude sloužit pro zobrazení detailu receptu po rozkliknutí. Budeme v něm potřebovat 3x TextView, pro název receptu, suroviny a postup, dále tlačítko které nás přesměruje na úpravu receptu. Můžeme také přidat nadpisy k jednotlivým informacím o receptu. Všemu nastavíme id, v mém případě to jsou: receptDetailNazev, receptDetailSuroviny, receptDetailPostup a upravitBtn. Textview pro suroviny a recept si můžete vložit do Scrollview.
-* Ve třídě ReceptActivity si v metodě onCreate nastavíme zobrazení našeho xml souboru jako výchozí pro třídu.
+* Budeme potřebovat si vytvořit xml soubor obrazovky, která bude sloužit pro zobrazení detailu receptu po rozkliknutí. Pojmenujeme ho recept_detail. Budeme v něm potřebovat 3x TextView, pro název receptu, suroviny a postup, dále tlačítko které nás přesměruje na úpravu receptu. Můžeme také přidat nadpisy k jednotlivým informacím o receptu. Všemu nastavíme id, v mém případě to jsou: receptDetailNazev, receptDetailSuroviny, receptDetailPostup a upravitBtn. Textview pro suroviny a recept si můžete vložit do Scrollview.
+* Ve třídě ReceptActivity si v metodě onCreate nastavíme náš xml soubor jako view.
 ` setContentView(R.layout.recept_detail);`
 * Dále si vytvoříme ve třídě proměnné, se kterýma budeme pracovat.
 ` TextView detailNazev, detailSuroviny, detailPostup;`\
@@ -349,12 +350,87 @@ detailNazev = findViewById(R.id.receptDetailNazev);
         `detailSuroviny.setText(MainActivity.receptArrayList.get(position).getSuroviny());`\
         `detailPostup.setText(MainActivity.receptArrayList.get(position).getPostup());`
 * Jako poslední věc ve třídě ReceptActivity si vytvoříme metodu upravit, která nas přesměruje do třídy EditRecept, kterou si zachvíli vytvoříme. Opět využijeme Intent a opět do Extra přidáme hodnotu pozice("position") a spustíme popis operací.
-` public void upravit(View v){`
-    `    Intent ht1 = new Intent( ReceptActivity.this, EditRecept.class);`
-   `     ht1.putExtra("position", position );`
-    `    startActivity(ht1);`
+` public void upravit(View v){`\
+    `    Intent ht1 = new Intent( ReceptActivity.this, EditRecept.class);`\
+   `     ht1.putExtra("position", position );`\
+    `    startActivity(ht1);`\
  `   }`
 * Teď už jenom v xml souboru nastavíme pro náš button tuhle metodu na onClick: `android:onClick="upravit"`.
 
-==Edit dat==
+==Mazání dat==
+* Pro mázání dat budeme potřebovat další php soubor na našem hostingu. Takže se přesuneme tam a vytvoříme soubor "delete.php". V něm se jako vždy připojíme do databáze, uložíme do přoměnné id, které si pošleme z appky, a následně pres SQL dotaz vymažeme položku podle id.
+` <?php`\
+`$db_name = "id18087905_mojedatabaze";`\
+`$mysql_username = "id18087905_realfaid";`\
+`$mysql_pasword = "_Maturitni123";`\
+`$server_name = "localhost";`\
+`$connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name);`\
+`$id = $_POST["id"];`\
+`$sql = "DELETE FROM recepty WHERE id='$id'";`\
+`$result = mysqli_query($connection, $sql);  `\
+`if($result){`\
+ `   echo "uspech";`\
+`}`\
+`else{`\
+ `   echo "Selhalo";`\
+`}`\
+`mysqli_close($connection);`\
+`?>`
+* Nyní si vytvoříme novou třídu EditRecept, bude stejná jako ostatní třídy, které používame pro zobrazení jiné stránky, bude dědit po třídě AppCompatActivity, vytvoříme metodu onCreate a metody pro zobrazení a práci s menu. (Vše můžeme zkopírovat z jiné třídy a přepsat hodnoty). ` package com.example.sqlprojekt;`\
+`public class EditRecept extends AppCompatActivity`\
+`{`\
+    `@Override`\
+    `protected void onCreate(Bundle savedInstanceState){}`
+* Vytvoříme si nový xml soubor, pro edit a mazání dat. Pojmenujeme si ho edit_recept, budeme potřebovat 3x EditText a 2x Button. Nastavíme objektům id(editNazev, editSuroviny, editPostup, ulozBtn, smazatBtn).
+* Ve tříde EditRecept. V metodě onCreate nastavíme aby se xml soubor edit_recept nastavil jako view.
+`setContentView(R.layout.edit_recept);`
+* Vytvoříme metodu smazatData s parametrem final String id1, kvůli tomu, ať se ví, co mazat. Vnitřek metody bude vypadat velmi podobně jako metoda pro přidávání dat. Použijeme StringRequest, vytvoříme její instanci, s parametry, metody push, url našeho souboru "delete.php", a onResponse a onErrorResponse metody.
+* StringRequest request = new StringRequest(Request.Method.POST, "https://sqlprojekt.000webhostapp.com/delete.php",
+`   new Response.Listener<String>() {`\
+`  @Override`\
+`  public void onResponse(String response) {`\
+`      if(response.equalsIgnoreCase("uspech")){`\
+`          Toast.makeText(EditRecept.this, "Data se úspěšně smazala", Toast.LENGTH_SHORT).show();`\
+ `           }`\
+                     `       else{`\
+                     `           Toast.makeText(EditRecept.this, "Chyba, data se nesmazala", Toast.LENGTH_SHORT).show();`\
+                     `       }`\
+               `    }`\
+            `    }, new Response.ErrorListener() {`\
+         `   @Override`\
+         `   public void onErrorResponse(VolleyError error) {`\
+         `       Toast.makeText(EditRecept.this, error.getMessage(), Toast.LENGTH_SHORT).show();`\
+         `   } })`
+* V další části si vytvoříme Mapu hodnot, které budou odeslány pomocí POST, pošleme pomocí ní hodnotu id.
+` {`\
+          `  @Override`\
+           ` protected Map<String, String> getParams() throws AuthFailureError{`\
+             `   Map<String, String> params = new HashMap<String,String>();`\
+            `    params.put("id", id1);` //id je pod jakým "názvem" to posílame, id1 je hodnota, kterou posíláme\
+          `      return params;`\
+         `   }};`
+* V poslední části si vytvoříme RequestQueue, frontu na odesílání požadavků a přidáme do ní náš požadavek “request”.
+ `RequestQueue requestQueue = Volley.newRequestQueue(this);`\
+     `   requestQueue.add(request);`\
+   ` }`
+* Nyní si ve tříde EditRecept vytvoříme objekty EditText edNazev, edSuroviny, edPostup a proměnné String id a int position.
+`int position;`\
+  `  String id;`\
+  `  EditText edNazev, edSuroviny, edPostup;`
+* V metodě onCreate si do EditTextů uložíme naše EditTexty z xml souboru, vytvoříme objekt intent, do kterého získame Intent, získáme z tama hodnotu pozice a následně hodnotu proměnné id a jako text EditTextů nastavíme hodnoty, dané položky, podle pozice.
+`Intent intent = getIntent();`\
+       `position = intent.getExtras().getInt("position");`\
+       ` id = MainActivity.receptArrayList.get(position).getId();`\
+       ` edNazev.setText(MainActivity.receptArrayList.get(position).getNazev());`\
+        `edSuroviny.setText(MainActivity.receptArrayList.get(position).getSuroviny());`\
+       ` edPostup.setText(MainActivity.receptArrayList.get(position).getPostup());`
+* Ve tříde EditRecept vytvoříme novou metodu smazData s parametry View view, která bude sloužit pro zavolání metody smazatData s parametrem id, které získáváme v onCreate metodě. A následně nás přepne zpět do třídy MainActivity a na hlavní stránku.
+` public void smazData(View v){`
+        `smazatData(id);`
+       ` Intent ht1 = new Intent( EditRecept.this, MainActivity.class);`
+       ` startActivity(ht1);`
+   ` }`
+* Na konec nastavíme v xml souboru edit_recept, Buttonu na odstraněním, metodu smazData jako onClick.
+`android:onClick="smazData"`
+
 
