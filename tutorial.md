@@ -11,7 +11,7 @@
 
 * Zadáme název (Name) našeho projektu (v mém případě "sqlprojekt"), jazyk (Language) vybereme "Java" a&nbsp;minimální SDK (Minimal SDK), doporučoval bych API androidu 5 nebo 6, aby šla aplikace spustit na&nbsp;většině mobilních zařízeních. Klikneme na finish pro vytvoření a počkáme než se projekt vytvoří.
 
-    ![vytvoreni-projektu](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/nazev_projektu.PNG?raw=true)
+    ![vytvoreni-projektu](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/projekt-nazev.PNG?raw=true)
     
 * Nyní si vytvoříme vzhled hlavní stránky, v levém panelu přejdeme do "res->layout->activity_main.xml", v&nbsp;pravé horní části si můžete vybrat, jak chcete xml soubor zobrazovat, doporučuji používat zobrazení "Design" pro přidání objektů na&nbsp;stránku pomocí přetahování objektů z části vlevo od levé obrazovky, a&nbsp;potom používat "Split" na následnout úpravu objektů pomocí kódu. Nezapomeňte každý objekt po&nbsp;přidání ukotvit pomocí teček na stranách objektu.
 
