@@ -6,6 +6,7 @@
 * V android studiu si vytvoříme nový projekt (v horní liště "file->new->New project") a&nbsp;vybereme&nbsp;"Empty&nbsp;Activity".
 
     ![novy-projekt](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/file.PNG?raw=true)
+    
     ![empty-activity](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/empty_acitivty.PNG?raw=true)
 
 * Zadáme název (Name) našeho projektu (v mém případě "sqlprojekt"), jazyk (Language) vybereme "Java" a&nbsp;minimální SDK (Minimal SDK), doporučoval bych API androidu 5 nebo 6, aby šla aplikace spustit na&nbsp;většině mobilních zařízeních. Klikneme na finish pro vytvoření a počkáme než se projekt vytvoří.
@@ -41,7 +42,7 @@
 * Nyní přejdeme do xml souboru "activity_main.xml" a tlačítku nastavíme atribut "onClick", hodnotou bude metoda, kterou má tlačítko zavolat, při kliknutí. V našem případě to bude `android:onClick="addRecept"`(Tlačítko zavolá metodu "addRecept" z třídy se kterou je layout spojen, v našem případě třída "MainActivity".
 * Teď umí naše aplikace po kliknutí na tlačítko "Přidat recept" zobrazit stránku na přidávání, ale musíme vyřešit jak se z ní dostat, to vyřešíme pomocí menu.
 
-##### Vytvoření menu a zobrazování menu
+#### Vytvoření menu a zobrazování menu
 * Ve složce "res" vytvoříme složku ("Directory") "menu", do složky vytvoříme "Menu Resource File" pojmenovaný "main_menu".
 
     ![menu-soubory](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/menu_soubory.PNG?raw=true)
@@ -64,7 +65,7 @@ return true;}
 public boolean onOptionsItemSelected(@NonNull MenuItem item) { 
 switch (item.getItemId()) {  
 case R.id.home:  //"home" je "id", které jsme si nastavili pro naše menu
-Intent ht1 = new Intent(ReceptActivity.this, MainActivity.class);  
+Intent ht1 = new Intent(ReceptActivity.this, MainActivity.class);  //Na prvním místě třída, kde se nacházíme, na druhém místě, kam chceme.
 startActivity(ht1);   
 return true;  
 default:  
