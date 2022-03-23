@@ -103,7 +103,7 @@ $db_name = "id18087905_mojedatabaze";  // název databáze
 $mysql_username = "id18087905_realfaid"; // jména nás jako uživatele
 $mysql_pasword = "heslo"; // naše heslo k databázi
 $server_name = "localhost"; // název serveru na kterém to jede
-$connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name);` // slouží k připojení k databázi
+$connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name); // slouží k připojení k databázi
 $nazev = $_POST["nazev"]; // do proměnné $nazev uloží data které se odešlou z aplikace
 $suroviny = $_POST["suroviny"]; // do proměnné $suroviny uloží data které se odešlou z aplikace
 $postup = $_POST["postup"]; // do proměnné $postup uloží data které se odešlou z aplikace
@@ -113,7 +113,7 @@ if($result){
     echo "Data vložena"; // pokud se podaří vše vypíše se "Data vložena"
 }
 else{
-    echo "chyba";` // pokud se něco nepodaří vypíše to chyba
+    echo "chyba"; // pokud se něco nepodaří vypíše to chyba
 }`
 mysqli_close($connection); // ukončení připojení k databázi
 ?>
@@ -331,7 +331,7 @@ $server_name = "localhost";
 $connection = mysqli_connect($server_name, $mysql_username, $mysql_pasword, $db_name); // připojíme se
 $result = array();
 $result["recepty"] = array(); // v hranatých závorkách název databáze
-$select = "SELECT * from recepty"` // sql dotaz 
+$select = "SELECT * from recepty" // sql dotaz 
 $responce = mysqli_query($connection,$select);
 while($row = mysqli_fetch_array($responce))
 {
@@ -576,7 +576,7 @@ new Response.Listener<String>() {
     @Override
     protected Map<String, String> getParams() throws AuthFailureError{
         Map<String, String> params = new HashMap<String,String>();
-        params.put("id", id1);` //id je pod jakým "názvem" to posílame, id1 je hodnota, kterou posíláme
+        params.put("id", id1); //id je pod jakým "názvem" to posílame, id1 je hodnota, kterou posíláme
         return params;
     }
 };
