@@ -10,6 +10,7 @@
         android:supportsRtl="true"
 
 
+
         android:theme="@style/Theme.Sqlprojekt">
         <activity
             android:name=".MainActivity"
@@ -26,7 +27,7 @@
             android:parentActivityName=".MainActivity"/>
 
 
-        <activity android:name=".EditReceptnepouzivam"
+        <activity android:name=".EditRecept"
          />
 
 

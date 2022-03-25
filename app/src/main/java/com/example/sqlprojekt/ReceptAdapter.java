@@ -25,16 +25,15 @@ public class ReceptAdapter extends ArrayAdapter<Recept> {
         this.arrayListRecept = arrayListRecept;
     }
 
-    @NonNull
-    @Override
+
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recept_item, null, true);
 
         TextView vypisNazev = view.findViewById(R.id.vypisReceptNazev);
-        TextView vypisId = view.findViewById(R.id.vypisReceptId);
+
         vypisNazev.setText(arrayListRecept.get(position).getNazev());
-        vypisId.setText(arrayListRecept.get(position).getId());
+
 
         return view;
     }

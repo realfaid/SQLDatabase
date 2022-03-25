@@ -4,14 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/activity_main.xml" value="0.3523550724637681" />
-        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/add_recept.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/add_recept.xml" value="0.33" />
         <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/custom_list_item.xml" value="0.3523550724637681" />
+        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/dada.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/dadad.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/edit_recept.xml" value="0.29347826086956524" />
-        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/recept_detail.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/hovno.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/pokus.xml" value="0.2871376811594203" />
+        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/recept_detail.xml" value="0.33" />
         <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/recept_item.xml" value="0.3523550724637681" />
         <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/recept_layout.xml" value="0.317481884057971" />
         <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/layout/recept_template.xml" value="0.317481884057971" />
         <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Honza/Documents/GitHub/SQLDatabase/app/src/main/res/menu/menu_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Honza/sqlprojekt/app/src/main/res/drawable/border.xml" value="0.12407407407407407" />
         <entry key="..\:/Users/Honza/sqlprojekt/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Honza/sqlprojekt/app/src/main/res/layout/add_category.xml" value="0.1" />

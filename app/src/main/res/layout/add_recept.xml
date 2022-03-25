@@ -40,7 +40,7 @@
         android:id="@+id/editReceptResources"
         android:layout_width="311dp"
         android:layout_height="103dp"
-        android:background="@drawable/border"
+
         android:gravity="top"
         android:hint=""
         android:text=""
@@ -55,7 +55,7 @@
         android:id="@+id/editReceptProcess"
         android:layout_width="315dp"
         android:layout_height="194dp"
-        android:background="@drawable/border"
+
         android:gravity="top"
         android:hint=""
         android:text=""

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ReceptAdapter adapter;
     public static ArrayList<Recept> receptArrayList = new ArrayList<>();
     String url = "https://sqlprojekt.000webhostapp.com/retrieve.php";
-    Recept recept;
+
 
 
     @Override
@@ -63,15 +63,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         nacistData();
     }
 
-    public void AddRecept(View v){
+    public void addRecept(View v){
 
         Intent ht1 = new Intent(MainActivity.this, AddRecept.class);
         startActivity(ht1);
 
     }
+
 
     public void nacistData(){
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                                     String suroviny = object.getString("suroviny");
                                     String postup = object.getString("postup");
 
-                                    recept = new Recept(id,nazev,suroviny,postup);
+                                    Recept recept = new Recept(id,nazev,suroviny,postup);
                                     receptArrayList.add(recept);
                                     adapter.notifyDataSetChanged();
                                 }

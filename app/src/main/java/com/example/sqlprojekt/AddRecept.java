@@ -37,7 +37,7 @@ public class AddRecept extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_recept);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         txtname = findViewById(R.id.editReceptName);
         txtresources = findViewById(R.id.editReceptResources);
         txtprocess = findViewById(R.id.editReceptProcess);
@@ -49,10 +49,32 @@ public class AddRecept extends AppCompatActivity {
 
                 insertData();
 
+
             }
 
 
         });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.home:
+                Intent ht1 = new Intent(AddRecept.this, MainActivity.class);
+                startActivity(ht1);
+
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
@@ -61,8 +83,8 @@ public class AddRecept extends AppCompatActivity {
         String nazev = txtname.getText().toString().trim();
         String suroviny = txtresources.getText().toString().trim();
         String postup = txtprocess.getText().toString().trim();
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Načítání....");
+
+
 
         if (nazev.isEmpty()) {
             Toast.makeText(this, "Zadej název", Toast.LENGTH_SHORT).show();
@@ -76,7 +98,8 @@ public class AddRecept extends AppCompatActivity {
         }
 
         else{
-            progressDialog.show();
+
+
             StringRequest request = new StringRequest(Request.Method.POST, "https://sqlprojekt.000webhostapp.com/insert.php",
                     new Response.Listener<String>() {
                         @Override
@@ -84,11 +107,13 @@ public class AddRecept extends AppCompatActivity {
 
                             if(response.equalsIgnoreCase("Data vložena")) {
                                 Toast.makeText(AddRecept.this, "Data vložena", Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
+
+                                Intent ht1 = new Intent(AddRecept.this, MainActivity.class);
+                                startActivity(ht1);
                             }
                             else{
                                 Toast.makeText(AddRecept.this, "chybička", Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
+
                             }
                         }
 
@@ -96,7 +121,6 @@ public class AddRecept extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                     Toast.makeText(AddRecept.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
             }
         }
 
