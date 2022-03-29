@@ -2,6 +2,12 @@
 * Budeme používat vývojové prostředí "Android studio" a webhosting "000webhost",
 * Příkladovou aplikací bude veřejná kuchařka, uživatel do ní bude moct přidat recept, upravovat recepty a mazat recepty.
 
+### Co budete potřebovat.
+* Pro vytvoření mobilní aplikace podle mého tutoriálu budete potřebovat:
+    * Připojení k internetu
+    * Android Studio
+    * Chuť programovat  
+
 ## Vytvoření projektu a základního layoutu
 * V android studiu si vytvoříme nový projekt (v horní liště "file->new->New project") a&nbsp;vybereme&nbsp;"Empty&nbsp;Activity".
 
