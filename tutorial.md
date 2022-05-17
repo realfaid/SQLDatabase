@@ -104,7 +104,7 @@ return super.onOptionsItemSelected(item);  } }
  
     ![tabulka](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/databaze.png?raw=true)
 
-* ### Pro komunikaci s databází budeme používat webové API pomocí PHP souborů uložených na stejném hostingu. Z&nbsp;aplikace tedy nebudeme komunikovat přímo s databází, ale s PHP souborem s potřebnými parametry. PHP soubor se následně spojí s databází.
+* ### Pro komunikaci s databází budeme používat webové API pomocí PHP souborů, uložených na stejném hostingu. Z&nbsp;aplikace tedy nebudeme komunikovat přímo s databází, ale s PHP souborem s potřebnými parametry. PHP soubor se následně spojí s databází.
 
 
 * Přejdeme v levé liště na "File manager", klikneme na upload files a ve složce "public_html" vytvoříme soubor "insert.php"
