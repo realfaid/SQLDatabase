@@ -195,11 +195,11 @@ if (nazev.isEmpty()) {
 
 * Pokud ani jedna z podmínek nenastane, nastavíme co se má stát, a to bude samotné odeslání dat. Bude to vypadat nějak takhle a následně si to popíšeme:
 
-* V první části si vytvoříme StringRequest na načtení kódu ze souboru na internetu, určíme metodu POST a zadáme url našeho insert souboru, tu získáme když klikneme pravým tlačítkem myši na soubor, vybereme view a zkopírujeme url adresu, Potom vytvoříme metodu onResponse s parametrem String response, nastavíme: pokud se výsledek bude rovnat "Data vložena"(To co jsme si psali v souboru "insert.php") tak nám to napíše "Data Vložena" - to znamená, že se vše provedlo vpořádku, a přepne nás to zpět do třídy MainActivity , pokud ne, vypíše se "chybička".
+* V první části si vytvoříme StringRequest na načtení kódu ze souboru na internetu, určíme metodu POST(slouží pro odesílaní dat) a zadáme url našeho insert souboru, tu získáme když klikneme pravým tlačítkem myši na soubor, vybereme view a zkopírujeme url adresu, Potom vytvoříme metodu onResponse s parametrem String response, nastavíme: pokud se výsledek bude rovnat "Data vložena"(To co jsme si psali v souboru "insert.php") tak nám to napíše "Data Vložena" - to znamená, že se vše provedlo vpořádku, a přepne nás to zpět do třídy MainActivity , pokud ne, vypíše se "chybička".
 
 ```java
 else{
-    StringRequest request = new\ StringRequest(Request.Method.POST,"https://sqlprojekt.000webhostapp.com/insert.php",
+    StringRequest request = new StringRequest(Request.Method.POST,"https://sqlprojekt.000webhostapp.com/insert.php",
 new Response.Listener<String>() {
     @Override
     public void onResponse(String response) {
