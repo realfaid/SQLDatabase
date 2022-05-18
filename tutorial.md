@@ -138,7 +138,7 @@ mysqli_close($connection); // ukončení připojení k databázi
 ```
 
 * Uložíme a zavřeme.
-* Jestli nám vše funguje jak má můžeme otestovat, klikneme pravým na soubor "insert.php" a vybereme "View", pokud nám to vyhodí hlášku, kterou jsme si nastavili pokud vše klapne, je to vpořádku, pokud nám to vyhodí hlášku, kterou jsem si nastavili, když něco neklapne, něco je nejspíš špatně napsané.
+* Jestli nám vše funguje, jak má, můžeme otestovat, klikneme pravým na soubor "insert.php" a vybereme "View", pokud nám to vyhodí hlášku, kterou jsme si nastavili pokud vše klapne, je to vpořádku, pokud nám to vyhodí hlášku, kterou jsem si nastavili, když něco neklapne, něco je nejspíš špatně napsané.
  
     ![soubor-view](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/soubor-view.png?raw=true)
 
