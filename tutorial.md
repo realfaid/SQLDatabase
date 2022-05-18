@@ -248,7 +248,12 @@ requestQueue.add(request);
 
     ![listview](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/listview-pridat.png?raw=true)
 
-* Nyní si vytvoříme novou trídu s názvem Recept, bude to náš model, pro práci s databází. V něm si vytvoříme proměnné String, konstruktor a metody pro získávání a nastavování hodnot(gettery a settery), gettery a setter můžeme vygenerovat pomocí kliknutí pravým tlačítkem myši, následně klikneme na generate a pak na "Getter and Setter". Bude to vypadat takhle:
+* Nyní si vytvoříme novou trídu s názvem Recept, bude to náš model, pro práci s databází. V něm si vytvoříme proměnné String, konstruktor a metody pro získávání a nastavování hodnot(gettery a settery), gettery a setter můžeme vygenerovat pomocí kliknutí pravým tlačítkem myši, následně klikneme na generate a pak na "Getter and Setter". 
+
+![gettersetter1](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/gettersetter1.png?raw=true)
+![gettersetter2](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/gettersetter2.png?raw=true)
+
+
 ```java
 public class Recept {
     private String id,nazev,suroviny,postup;
