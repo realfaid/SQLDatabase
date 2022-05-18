@@ -27,7 +27,7 @@
     ![hlavni-xml](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/hlavni_clear.png?raw=true)
 
 * Přejdeme do třídy MainActivity a v metodě "onCreate" si uvedeme jaký layout cheme zobrazit: `setContentView(R.layout.activity_main);`-"activity_main" je náš xml soubor s tlačítkem.
-* V tříde "MainAcvitiy" vytvoříme novou metodu "addRecept" s parametrem "View view" (v našem případě to bude instance tlačítka které bude tuto metodu volat.)`public void AddRecept(View v){  }`pokud nám "View" bude házet chybu a svítit červeně, stačí na něj najet myší a zmáčknout "alt+shift+enter" pro&nbsp; importování.
+* V tříde "MainAcvitiy" vytvoříme novou metodu "addRecept" s parametrem "View view" (v našem případě to bude instance tlačítka které bude tuto metodu volat.)`public void addRecept(View v){  }`pokud nám "View" bude házet chybu a svítit červeně, stačí na něj najet myší a zmáčknout "alt+shift+enter" pro&nbsp; importování.
 * Vytvoříme novou třídu "AddReceptActivity", která bude sloužit na přidání receptu a zobrazení stránky pro přidání, klikneme pravým na složku, ve které je i "MainActivity.java"&nbsp;("java->com.example.sqlprojekt") dáme "New->Java class" a pojmenujeme "AddReceptActivity".
  
     ![nova-trida](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/nova_trida.png?raw=true)
@@ -244,7 +244,7 @@ requestQueue.add(request);
 }
 ```
 ## Výpis dat do Listview
-* Jako první sa na naší první stránku musíme přidat ListView, takže v xml souboru, který používáme na hlavní stránce, přidáme ListView, ukotvíme a nastavíme id.
+* Jako první se na naší první stránku musíme přidat ListView, takže v xml souboru, který používáme na hlavní stránce, přidáme ListView, ukotvíme a nastavíme id.
 
     ![listview](https://github.com/realfaid/SQLDatabase/blob/main/screenshots/listview-pridat.png?raw=true)
 
@@ -678,7 +678,7 @@ else{
     echo "chybaaa"; //v opačném případě "chybaaa"
 }
 ```
-* Uložíme a zavřeme, když klikneme na soubor pravým tlačítkem na myši, vybereme "view", otestujeme si jestli soubor funguje a je správně napsaný.
+* Uložíme a zavřeme, když klikneme na soubor pravým tlačítkem na myši a vybereme "view", tak pokud se nám vypíše "Data se aktualizovala", vše se provedlo v pořádku(připojení, dotaz), pokud nám to napíše "chybaaa", někde nastala chyba.
 
 * Na úpravu dat si vytvoříme ve třídě EditActivity novou metodu updateData s parametry View view. Metoda se bude volat po stiknutí tlačítka. Metoda bude hodně podobná metodě pro přidávání dat, bude navíc posílat id.
 ```java
